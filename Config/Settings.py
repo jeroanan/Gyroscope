@@ -20,3 +20,11 @@ def should_get_stylesheets(site_config, app_config):
 
 def should_get_pages(site_config, app_config):
     return __get_setting(site_config, app_config, "get_pages", True)
+
+
+def should_log_too_big(site_config, app_config):
+    return __get_setting(site_config, app_config, "log_too_big", True)
+
+
+def should_log_too_slow(site_config, app_config):
+    return __get_setting(site_config, app_config, "log_too_big", True)

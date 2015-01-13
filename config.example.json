@@ -1,26 +1,55 @@
+/*
+ * This file is passed through jsmin before it is used, so comments are fine.
+ * Take a copy of this file and name it config.example. Change the settings below to
+ * meet your requirements.
+*/
+
 {
   "config":
     {
+      // Threshold size of a page or asset before it's deemed too big and a warning is logged.
       "acceptable_size": 100,
+
+
+      // Threshold response time for a page or asset before it's deemed to be taking too long.
       "acceptable_time": 3,
+
+      // Should we get pages? If false only the index of each site will be gotten.
       "get_pages": false,
+
+      /* Should assets be retrieved for each page we hit at a site? Only has an effect in conjunction with
+       * get_images, get_scripts and get_stylesheets.
+      */
       "get_assets": false,
+
+      // If get_assets is set to true, whether images should be retrieved
       "get_images": true,
-      "get_scripts": false,
-      "get_stylesheets": false,
+
+      // if get_assets is set to true, whether script files should be retrieved
+      "get_scripts": true,
+
+      // if get_assets is set to true, whether stylesheets should be retrieved
+      "get_stylesheets": true,
+
+      // Where to ouput logs to. If it's an empty string, logs will go to the console.
       "logfile_location": "gyroscope.log",
 
       // a: append. w: overwrite
       "logfile_mode": "w",
 
       /*CRITICAL = 50
-        FATAL = CRITICAL
         ERROR = 40
         WARNING = 30
         INFO = 20
         DEBUG = 10
         NOTSET = 0*/
-      "log_level": 30
+      "log_level": 30,
+
+      // When a page or resource is too big: should that be logged?
+      "log_too_big": true,
+
+      // When the server takes too long to respond to a request for a page or asset: should that be logged?
+      "log_too_slow": true
     }
 
 }

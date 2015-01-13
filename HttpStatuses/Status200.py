@@ -1,10 +1,13 @@
-def log_ok_status(uri, page_description, size, time_elapsed, status):
+def log_ok_status(uri, page_description, size, time_elapsed, status, site, config):
 
     import logging
     from Config import LoadConfig
+    from Config import Settings
     from Checks import Checks
 
     def log_time_unacceptable():
+        if not Settings.should_log_too_slow(site, config):
+            return
         logging.warning("%s (%s): took too long! (took %d seconds; acceptable time: %d seconds)" %
                         (uri, page_description, time_elapsed, acceptable_time))
 
@@ -12,17 +15,22 @@ def log_ok_status(uri, page_description, size, time_elapsed, status):
         logging.warning("%s (%s) is too big! It was %d KB, acceptable size is %d KB" %
                         (uri, page_description, size, acceptable_size))
 
+    def __need_to_log_too_big():
+        return (not Checks.check_size_acceptable(size, acceptable_size)) and Settings.should_log_too_big(site, config)
+
+    def __need_to_log_too_small():
+        return not Checks.time_acceptable(time_elapsed, acceptable_time) and Settings.should_log_too_slow(site, config)
+
     config = LoadConfig.load_config()
     acceptable_time = config.get("acceptable_time", 3)
     acceptable_size = config.get("acceptable_size", 100)
 
-    if not Checks.time_acceptable(time_elapsed, acceptable_time):
+    if __need_to_log_too_small():
         log_time_unacceptable()
-        if not Checks.check_size_acceptable(size, acceptable_size):
+        if __need_to_log_too_big():
             log_size_unacceptable()
     else:
-        if Checks.check_size_acceptable(size, acceptable_size):
-            logging.info("%s (%s): %s OK (took %d seconds)" %
-                         (uri, page_description, status, time_elapsed))
-        else:
+        if __need_to_log_too_big():
             log_size_unacceptable()
+        else:
+            logging.info("%s (%s): %s OK (took %d seconds)" % (uri, page_description, status, time_elapsed))

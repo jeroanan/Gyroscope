@@ -16,8 +16,11 @@ def get_assets(html_str, site, page_uri, config):
         def get_uri(asset):
             return UriBuilder.build_uri(asset, site["uri"])
 
+        def do_request(uri):
+            Request.get_request(uri, site, config)
+
         uris = map(get_uri, map(lambda a: a[uri_attrib], assets))
-        list(map(Request.get_request, uris))
+        list(map(do_request, uris))
 
     def get_scripts():
         scripts = soup.findAll("script", src=re.compile(".*"))
