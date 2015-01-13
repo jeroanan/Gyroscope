@@ -5,15 +5,16 @@ import time
 from bs4 import BeautifulSoup
 
 import Request
+from Config import Settings
 from Uri import UriBuilder
 
 
-def get_assets(html_str, site_uri, page_uri):
+def get_assets(html_str, site, page_uri, config):
 
     def request_all(assets, uri_attrib):
 
         def get_uri(asset):
-            return UriBuilder.build_uri(asset, site_uri)
+            return UriBuilder.build_uri(asset, site["uri"])
 
         uris = map(get_uri, map(lambda a: a[uri_attrib], assets))
         list(map(Request.request, uris))
@@ -34,11 +35,14 @@ def get_assets(html_str, site_uri, page_uri):
         request_all(stylesheets, "href")
 
     def get_all_assets():
-        get_scripts()
-        get_images()
-        get_stylesheets()
+        if Settings.should_get_scripts(site, config):
+            get_scripts()
+        if Settings.should_get_images(site, config):
+            get_images()
+        if Settings.should_get_stylesheets(site, config):
+            get_stylesheets()
 
-    logging.info("Getting assets for %s", site_uri)
+    logging.info("Getting assets for %s", page_uri)
     soup = BeautifulSoup(html_str)
     start_time = time.time()
     get_all_assets()

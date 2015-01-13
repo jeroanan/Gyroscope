@@ -5,7 +5,9 @@
       "acceptable_time": 3,
       "get_pages": false,
       "get_assets": false,
-
+      "get_images": true,
+      "get_scripts": false,
+      "get_stylesheets": false,
 
       /*CRITICAL = 50
         FATAL = CRITICAL
