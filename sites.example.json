@@ -1,0 +1,22 @@
+{
+  "sites": [
+    {
+      "get_pages": true,
+      "get_assets": true,
+      "uri": "http://localhost",
+      "pages": [
+        {
+          "path": "/page.html",
+          "description": "My Page"
+        },
+        {
+          "path": "/otherpage.html",
+          "description": "My other page"
+        }
+      ]
+    },
+    {
+      "uri": "http://example-site.com"
+    }
+  ]
+}
