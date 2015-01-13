@@ -10,3 +10,6 @@ def load_sites():
     except FileNotFoundError:
         logging.error("Unable to find sites.json. Terminating.")
         sys.exit(-1)
+    except ValueError:
+        logging.error("It seems that your sites.json is corrupt. Terminating.")
+        sys.exit(-1)
