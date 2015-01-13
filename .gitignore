@@ -98,3 +98,13 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+.idea/workspace.xml
+.idea/.name
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/encodings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/soup.iml
+.idea/vcs.xml
