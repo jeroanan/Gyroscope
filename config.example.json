@@ -8,6 +8,10 @@
       "get_images": true,
       "get_scripts": false,
       "get_stylesheets": false,
+      "logfile_location": "gyroscope.log",
+
+      // a: append. w: overwrite
+      "logfile_mode": "w",
 
       /*CRITICAL = 50
         FATAL = CRITICAL
