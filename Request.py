@@ -14,11 +14,15 @@ def __request(uri, page_description, method, site, config, fields=None, second_c
     def should_give_second_chance():
         return too_slow() and config.get("give_second_chance", True) and (not second_chance)
 
-    logging.info("Getting %s (%s)" % (page_description, uri))
+    def get_uri():
+        return uri.replace(" ", "%20")
+
+    logging.info("Getting %s (%s)" % (page_description, get_uri()))
     http = urllib3.PoolManager(retries=False)
 
     request_start_time = time.time()
-    http_request = http.request(method, uri, fields=fields)
+    get_uri()
+    http_request = http.request(method, get_uri(), fields=fields)
     time_elapsed = time.time() - request_start_time
 
     if should_give_second_chance():
