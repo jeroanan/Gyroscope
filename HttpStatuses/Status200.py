@@ -1,4 +1,4 @@
-def log_ok_status(uri, page_description, size, time_elapsed, status, site, config):
+def log_ok_status(uri, page_description, size, time_elapsed, site, config):
 
     import logging
     from Config import LoadConfig
@@ -33,4 +33,4 @@ def log_ok_status(uri, page_description, size, time_elapsed, status, site, confi
         if __need_to_log_too_big():
             log_size_unacceptable()
         else:
-            logging.info("%s (%s): %s OK (took %d seconds)" % (uri, page_description, status, time_elapsed))
+            logging.info("%s (%s): 200 OK (took %d seconds)" % (uri, page_description, time_elapsed))

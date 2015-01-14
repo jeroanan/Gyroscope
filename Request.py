@@ -3,21 +3,11 @@ import time
 
 import urllib3
 
-from HttpStatuses import Status200
 from Checks import Checks
-
-def __log_status(http_request, uri, page_description, time_elapsed, site, config):
-        if http_request.status == 404:
-            logging.error("Missing page: %s" % uri)
-        elif http_request.status == 200:
-            Status200.log_ok_status(uri, page_description, http_request.tell()/1024, time_elapsed,
-                                    http_request.status, site, config)
-        else:
-            logging.warning("%s (%s): %s" % (uri, page_description, http_request.status))
+from HttpStatuses import LogStatus
 
 
 def __request(uri, page_description, method, site, config, fields=None, second_chance=False):
-
     def too_slow():
         return not Checks.time_acceptable(time_elapsed, config.get("acceptable_time", 100))
 
@@ -35,7 +25,7 @@ def __request(uri, page_description, method, site, config, fields=None, second_c
         logging.info("Doing second chance request for %s (too slow first time at %d seconds)" % (uri, time_elapsed))
         return __request(uri, page_description, method, site, config, fields, second_chance=True)
 
-    __log_status(http_request, uri, page_description, time_elapsed, site, config)
+    LogStatus.log_status(http_request, uri, page_description, time_elapsed, site, config)
     return http_request
 
 
