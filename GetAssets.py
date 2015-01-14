@@ -23,30 +23,36 @@ def get_assets(html_str, site, page_uri, config):
         uris = map(get_uri, map(lambda a: a[uri_attrib], assets))
         list(map(do_request, uris))
 
+    def sizes_in_kilobytes():
+        return math.ceil(sum(sizes)/1024)
+
+    def average_size(number_of_items):
+        return math.ceil(sizes_in_kilobytes() / number_of_items)
+
+    def log_size_information(number_of_items, resource_type):
+        logging.info("Got all %ss for %s. Total size was %d KB." % (resource_type, page_uri, sizes_in_kilobytes()))
+        logging.info("Average %s size: %dKB." % (resource_type, average_size(number_of_items)))
+
     def get_scripts():
+        sizes.clear()
         scripts = soup.findAll("script", src=re.compile(".*"))
         logging.info("Found %d external scripts" % len(scripts))
         request_all(scripts, "src")
+        log_size_information(len(scripts), "script")
 
     def get_images():
-
-        def sizes_in_kilobytes():
-            return math.ceil(sum(sizes)/1024)
-
-        def average_size(number_of_items):
-            return math.ceil(sizes_in_kilobytes() / number_of_items)
-
         sizes.clear()
         images = soup.findAll("img", src=re.compile(".*"))
         logging.info("Found %d images" % len(images))
         request_all(images, "src")
-        logging.info("Got all images. Total size was %d KB" % sizes_in_kilobytes())
-        logging.info("Average image size: %dKB" % average_size(len(images)))
+        log_size_information(len(images), "image")
 
     def get_stylesheets():
+        sizes.clear()
         stylesheets = soup.findAll("link", rel="stylesheet")
         logging.info("Found %d external stylesheets" % len(stylesheets))
         request_all(stylesheets, "href")
+        log_size_information(len(stylesheets), "stylesheet")
 
     def get_all_assets():
         if Settings.should_get_scripts(site, config):
