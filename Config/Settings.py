@@ -27,4 +27,4 @@ def should_log_too_big(site_config, app_config):
 
 
 def should_log_too_slow(site_config, app_config):
-    return __get_setting(site_config, app_config, "log_too_big", True)
+    return __get_setting(site_config, app_config, "log_too_slow", True)
