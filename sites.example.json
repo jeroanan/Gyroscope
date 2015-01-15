@@ -1,9 +1,11 @@
 {
   "sites": [
     {
+      "cookies": "cookie1=spam&cookie2=eggs",
       "get_pages": true,
       "get_assets": true,
       "uri": "http://localhost",
+
       "pages": [
         {
           "path": "/page.html",
