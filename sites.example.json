@@ -2,6 +2,7 @@
   "sites": [
     {
       "cookies": "cookie1=spam&cookie2=eggs",
+      "disabled": false,
       "get_pages": true,
       "get_assets": true,
       "uri": "http://localhost",

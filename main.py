@@ -18,7 +18,11 @@ def work():
                                 filemode=config.get("logfile_mode", "a"), format="%(asctime)s %(message)s")
 
     def get_site(site):
-        GetSite.get_site(site, config)
+        def site_disabled():
+            return site.get("disabled", False)
+
+        if not site_disabled():
+            GetSite.get_site(site, config)
 
     config = LoadConfig.load_config()
     init_logging()
