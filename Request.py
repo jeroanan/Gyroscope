@@ -1,5 +1,6 @@
 import logging
 import time
+import sys
 
 import urllib3
 
@@ -18,7 +19,9 @@ def __request(uri, page_description, method, site, config, fields=None, second_c
         return uri.replace(" ", "%20")
 
     def get_headers():
-        return urllib3.make_headers(keep_alive=True, accept_encoding=True)
+        headers = urllib3.make_headers(keep_alive=True, accept_encoding=True)
+        headers["cookie"] = site.get("cookies", "")
+        return headers
 
     logging.info("Getting %s (%s)" % (page_description, get_uri()))
     http = urllib3.PoolManager(retries=False)
