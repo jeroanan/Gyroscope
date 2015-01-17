@@ -53,6 +53,10 @@
       "log_too_big": true,
 
       // When the server takes too long to respond to a request for a page or asset: should that be logged?
-      "log_too_slow": true
+      "log_too_slow": true,
+
+      // Path to json file to use for list of web sites. If this setting is not specified then the sites.json file in
+      // the same directory as main.py is used.
+      "sites_file": "sites.json"
     }
 }

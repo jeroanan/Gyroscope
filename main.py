@@ -28,7 +28,7 @@ def work():
     init_logging()
     logging.info("Start")
     start_time = time.time()
-    list(map(get_site, LoadSites.load_sites()))
+    list(map(get_site, LoadSites.load_sites(config.get("sites_file", "sites.json"))))
     logging.info("End (total time: %d seconds)" % (time.time() - start_time))
 
 try:
