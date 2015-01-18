@@ -7,7 +7,7 @@ from Checks import Checks
 from HttpStatuses import LogStatus
 
 
-def __request(uri, page_description, method, site, config, fields=None, second_chance=False):
+def __request(uri, page_description, method, site, config, fields=(), second_chance=False):
     def too_slow():
         return not Checks.time_acceptable(time_elapsed, config.get("acceptable_time", 100))
 
@@ -41,5 +41,5 @@ def get_request(uri, site, config, page_description=""):
     return __request(uri, page_description, "GET", site, config)
 
 
-def post_request(uri, page_description, fields, site, config):
+def post_request(uri, site, config, fields, page_description):
     return __request(uri, page_description, "POST", site, config, fields)

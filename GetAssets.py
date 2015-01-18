@@ -27,7 +27,7 @@ def get_assets(html_str, site, page_uri, config):
         return math.ceil(sum(sizes)/1024)
 
     def average_size(number_of_items):
-        return math.ceil(sizes_in_kilobytes() / number_of_items)
+        return math.ceil(sizes_in_kilobytes() / max(number_of_items, 1))
 
     def log_size_information(number_of_items, resource_type):
         logging.info("Got all %ss for %s. Total size was %d KB." % (resource_type, page_uri, sizes_in_kilobytes()))

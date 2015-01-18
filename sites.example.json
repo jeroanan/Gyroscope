@@ -15,6 +15,14 @@
         {
           "path": "/otherpage.html",
           "description": "My other page"
+        },
+        {
+          "path": "/search.html",
+          "description": "Search Page",
+          "method": "POST",
+          "postdata": {
+            "key": "value"
+          }
         }
       ]
     },
