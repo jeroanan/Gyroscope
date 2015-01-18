@@ -17,11 +17,6 @@
       // Should we get pages? If false only the index of each site will be gotten.
       "get_pages": false,
 
-      /* Should assets be retrieved for each page we hit at a site? Only has an effect in conjunction with
-       * get_images, get_scripts and get_stylesheets.
-      */
-      "get_assets": false,
-
       // If get_assets is set to true, whether images should be retrieved
       "get_images": true,
 
