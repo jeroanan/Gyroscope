@@ -3,7 +3,6 @@ import argparse
 
 def get_args():
     def map_args_to_dict(a):
-
         def map_arg_if_not_none(mapping):
             if getattr(a, mapping[0]) is not None:
                 mapped_args[mapping[1]] = getattr(a, mapping[0])
@@ -16,8 +15,11 @@ def get_args():
             ("getimages", "get_images"),
             ("getpages", "get_pages"),
             ("getscripts", "get_scripts"),
+            ("getstylesheets", "get_stylesheets"),
             ("logfile", "logfile_location"),
             ("loglevel", "log_level"),
+            ("logtoobig", "log_too_big"),
+            ("logtooslow", "log_too_slow"),
             ("sitesfile", "sites_file")
         ]
 
@@ -45,14 +47,29 @@ def get_args():
             ("-gp", "--getpages", "Whether the pages configured for a site should be retrieved. This argument is "
                                   "overridden by page config for individual sites. Default True", bool),
 
-            ("-gs", "--getscripts", "Whether to retrieve external scripts. This argument is overridden by page config"
-                                    "for individual sites. Default True", bool),
+            ("-gscripts", "--getscripts", "Whether to retrieve external scripts. This argument is overridden by page "
+                                          "config for individual sites. Default True", bool),
+
+            ("-gss", "--getstylesheets", "Whether to retrieve external stylesheets. This argument is overridden by "
+                                         "page config for individual sites. Default True", bool),
+
+            ("-gsc", "--givesecondchance", "Whether a slowly-loading page or asset should be requested a second time. "
+                                           "The second response will then be measured. This argument is overridden by "
+                                           "page config for individual sites. Default True", bool),
 
             ("-lf", "--logfile", "Path to logfile. Default. ./gyroscope.log.", str),
 
             ("-ll", "--loglevel", "Logging level. The logger will output messages at the same "
                                   "or higher severity than is set. 0 = No logging, 10 = Debug, "
                                   "20 = Info, 30 = Warning, 40 = Error, 50 = Critical. Default 20.", int),
+
+            ("-ltb", "--logtoobig", "Whether log warnings should be output when a page or asset is too big according"
+                                    "to acceptablesize. This argument is overridden by  page config for individual "
+                                    "sites. Default True.", bool),
+
+            ("-lts", "--logtooslow", "Whether log warnings should be output when a page or asset is too slow according"
+                                     "to acceptabletime. This argument is overridden by  page config for individual "
+                                     "sites. Default True.", bool),
 
             ("-sf", "--sitesfile", "The location of the sites file. Default ./sites.json.", str)
         ]
