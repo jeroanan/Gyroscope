@@ -4,7 +4,10 @@
       "cookies": "cookie1=spam&cookie2=eggs",
       "disabled": false,
       "get_pages": true,
-      "get_assets": true,
+      "get_images": true,
+      "get_scripts": true,
+      "get_stylesheets": true,
+
       "uri": "http://localhost",
 
       "pages": [

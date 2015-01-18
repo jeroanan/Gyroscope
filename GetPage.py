@@ -12,7 +12,6 @@ def request_page(page_to_request, site, config):
             return Request.get_request(full_uri, site, config, page_config["description"])
         else:
             response = Request.post_request(full_uri, site, config, page_config["postdata"], page_config["description"])
-            print(response.data)
             return response
 
     page_config = ChainMap(page_to_request, PageDefaults.get_default())
