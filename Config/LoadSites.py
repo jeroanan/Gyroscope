@@ -5,6 +5,8 @@ from Config import LoadJson
 
 def load_sites(sites_file):
     try:
+        if sites_file is None:
+            sites_file = "sites.json"
         for web_site in LoadJson.load_json(sites_file, "sites"):
             yield web_site
     except FileNotFoundError:

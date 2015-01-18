@@ -2,8 +2,8 @@ def get_defaults():
     return {
         "acceptable_size": 100,
         "acceptable_time": 3,
-        "get_pages": False,
-        "get_assets": False,
+        "get_pages": True,
+        "get_assets": True,
         "get_images": True,
         "get_scripts": True,
         "get_stylesheets": True,
