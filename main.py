@@ -14,7 +14,8 @@ from Config import Settings
 def work():
 
     def init_config():
-        return ChainMap(GetArgs.get_args(), LoadConfig.load_config(), Defaults.get_defaults())
+        args = GetArgs.get_args()
+        return ChainMap(args, LoadConfig.load_config(args.get("config")), Defaults.get_defaults())
 
     def init_logging():
         logfile_location = Settings.get_logfile_location(config)
