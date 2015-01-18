@@ -2,6 +2,14 @@ def __get_setting(site_config, app_config, key, default_value):
     return site_config.get(key, app_config.get(key, default_value))
 
 
+def get_logfile_location(app_config):
+    return app_config.get("logfile_location", "")
+
+
+def get_log_level(app_config):
+    app_config.get("log_level", 20)
+
+
 def should_get_assets(site_config, app_config):
     return __get_setting(site_config, app_config, "get_assets", False)
 
