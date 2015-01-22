@@ -20,7 +20,8 @@ def get_args():
             ("loglevel", "log_level"),
             ("logtoobig", "log_too_big"),
             ("logtooslow", "log_too_slow"),
-            ("sitesfile", "sites_file")
+            ("sitesfile", "sites_file"),
+            ("noconfig", "no_config")
         ]
 
         list(map(map_arg_if_not_none, mappings))
@@ -70,6 +71,9 @@ def get_args():
             ("-lts", "--logtooslow", "Whether log warnings should be output when a page or asset is too slow according"
                                      "to acceptabletime. This argument is overridden by  page config for individual "
                                      "sites. Default True.", bool),
+
+            ("-nc", "--noconfig", "Whether to load a config file. If false then just command-line args and defaults"
+                                  "will be used", bool),
 
             ("-sf", "--sitesfile", "The location of the sites file. Default ./sites.json.", str)
         ]

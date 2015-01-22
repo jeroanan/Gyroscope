@@ -3,8 +3,10 @@ import sys
 from Config import LoadJson
 
 
-def load_config(config_file="config.json"):
+def load_config(config_file="config.json", no_config=False):
     try:
+        if no_config:
+            return {}
         if config_file is None:
             config_file = "config.json"
         return LoadJson.load_json(config_file, "config")
