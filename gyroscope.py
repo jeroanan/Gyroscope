@@ -19,7 +19,7 @@ def work():
 
     def init_logging():
         logfile_location = Settings.get_logfile_location(config)
-        if logfile_location == "":
+        if logfile_location == "" or config.get("no_logfile", False):
             logging.basicConfig(level=config["log_level"], format="%(asctime)s %(message)s")
         else:
             logging.basicConfig(filename=logfile_location, level=config["log_level"],

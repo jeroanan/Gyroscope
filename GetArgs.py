@@ -21,6 +21,7 @@ def get_args():
             ("logtoobig", "log_too_big"),
             ("logtooslow", "log_too_slow"),
             ("sitesfile", "sites_file"),
+            ("nologfile", "no_logfile"),
             ("noconfig", "no_config")
         ]
 
@@ -74,6 +75,9 @@ def get_args():
 
             ("-nc", "--noconfig", "Whether to load a config file. If false then just command-line args and defaults"
                                   "will be used", bool),
+
+            ("-nlf", "--nologfile", "Whether a log file shouldn't be used. If true then log will output to stdout.",
+                bool),
 
             ("-sf", "--sitesfile", "The location of the sites file. Default ./sites.json.", str)
         ]
