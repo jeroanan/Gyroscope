@@ -10,8 +10,8 @@ def load_sites(sites_file):
         for web_site in LoadJson.load_json(sites_file, "sites"):
             yield web_site
     except FileNotFoundError:
-        logging.error("Unable to find %s. Terminating." % sites_file)
+        logging.error("Unable to find {file_name}. Terminating.".format(file_name=sites_file))
         sys.exit(-1)
     except ValueError:
-        logging.error("It seems that your sites.json is corrupt. Terminating.")
+        logging.error("It seems that {file_name} is corrupt. Terminating.".format(file_name=sites_file))
         sys.exit(-1)
