@@ -17,13 +17,13 @@
       // Should we get pages? If false only the index of each site will be gotten.
       "get_pages": false,
 
-      // If get_assets is set to true, whether images should be retrieved
+      // Whether images should be retrieved
       "get_images": true,
 
-      // if get_assets is set to true, whether script files should be retrieved
+      // Whether script files should be retrieved
       "get_scripts": true,
 
-      // if get_assets is set to true, whether stylesheets should be retrieved
+      // Whether stylesheets should be retrieved
       "get_stylesheets": true,
 
       /* When the server takes too long to serve a page or asset, should we request a second time to see if speed is
