@@ -30,8 +30,11 @@ def get_assets(html_str, site, page_uri, config):
         return math.ceil(sizes_in_kilobytes() / max(number_of_items, 1))
 
     def log_size_information(number_of_items, resource_type):
-        logging.info("Got all %ss for %s. Total size was %d KB." % (resource_type, page_uri, sizes_in_kilobytes()))
-        logging.info("Average %s size: %dKB." % (resource_type, average_size(number_of_items)))
+        logging.info("Got all {resource_type}s for {page_uri}. Total size was {total_size}KB.".format(
+                     resource_type=resource_type, page_uri=page_uri, total_size=sizes_in_kilobytes()))
+
+        logging.info("Average {resource_type} size: {average_size}KB.".format(
+            resource_type=resource_type, average_size=average_size(number_of_items)))
 
     def get_asset(find_function, asset_type, uri_attrib):
         sizes.clear()
@@ -42,21 +45,21 @@ def get_assets(html_str, site, page_uri, config):
     def get_scripts():
         def find():
             scripts = soup.findAll("script", src=re.compile(".*"))
-            logging.info("Found %d external scripts" % len(scripts))
+            logging.info("Found {num_scripts} external scripts".format(num_scripts=len(scripts)))
             return scripts
         get_asset(find, "script", "src")
 
     def get_images():
         def find():
             images = soup.findAll("img", src=re.compile(".*"))
-            logging.info("Found %d images" % len(images))
+            logging.info("Found {num_images} images".format(num_images=len(images)))
             return images
         get_asset(find, "image", "src")
 
     def get_stylesheets():
         def find():
             stylesheets = soup.findAll("link", rel="stylesheet")
-            logging.info("Found %d external stylesheets" % len(stylesheets))
+            logging.info("Found {num_stylesheets} external stylesheets".format(num_stylesheets=len(stylesheets)))
             return stylesheets
         get_asset(find, "stylesheet", "href")
 
@@ -69,9 +72,10 @@ def get_assets(html_str, site, page_uri, config):
             get_stylesheets()
 
     sizes = []
-    logging.info("Getting assets for %s", page_uri)
+    logging.info("Getting assets for {page_uri}".format(page_uri=page_uri))
     soup = BeautifulSoup(html_str)
     start_time = time.time()
     get_all_assets()
     time_elapsed = time.time() - start_time
-    logging.info("Finished getting assets for %s. Took %d seconds." % (page_uri, time_elapsed))
+    logging.info("Finished getting assets for {page_uri}. Took {time_elapsed} seconds.".format(
+        page_uri=page_uri, time_elapsed=time_elapsed))
