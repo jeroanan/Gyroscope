@@ -33,26 +33,32 @@ def get_assets(html_str, site, page_uri, config):
         logging.info("Got all %ss for %s. Total size was %d KB." % (resource_type, page_uri, sizes_in_kilobytes()))
         logging.info("Average %s size: %dKB." % (resource_type, average_size(number_of_items)))
 
-    def get_scripts():
+    def get_asset(find_function, asset_type, uri_attrib):
         sizes.clear()
-        scripts = soup.findAll("script", src=re.compile(".*"))
-        logging.info("Found %d external scripts" % len(scripts))
-        request_all(scripts, "src")
-        log_size_information(len(scripts), "script")
+        found_assets = find_function()
+        request_all(found_assets, uri_attrib)
+        log_size_information(len(found_assets), asset_type)
+
+    def get_scripts():
+        def find():
+            scripts = soup.findAll("script", src=re.compile(".*"))
+            logging.info("Found %d external scripts" % len(scripts))
+            return scripts
+        get_asset(find, "script", "src")
 
     def get_images():
-        sizes.clear()
-        images = soup.findAll("img", src=re.compile(".*"))
-        logging.info("Found %d images" % len(images))
-        request_all(images, "src")
-        log_size_information(len(images), "image")
+        def find():
+            images = soup.findAll("img", src=re.compile(".*"))
+            logging.info("Found %d images" % len(images))
+            return images
+        get_asset(find, "image", "src")
 
     def get_stylesheets():
-        sizes.clear()
-        stylesheets = soup.findAll("link", rel="stylesheet")
-        logging.info("Found %d external stylesheets" % len(stylesheets))
-        request_all(stylesheets, "href")
-        log_size_information(len(stylesheets), "stylesheet")
+        def find():
+            stylesheets = soup.findAll("link", rel="stylesheet")
+            logging.info("Found %d external stylesheets" % len(stylesheets))
+            return stylesheets
+        get_asset(find, "stylesheet", "href")
 
     def get_all_assets():
         if Settings.should_get_scripts(site, config):
