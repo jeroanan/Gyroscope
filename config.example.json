@@ -17,20 +17,13 @@
       // Should we get pages? If false only the index of each site will be gotten.
       "get_pages": false,
 
-      // Whether images should be retrieved
-      "get_images": true,
-
-      // Whether script files should be retrieved
-      "get_scripts": true,
-
-      // Whether stylesheets should be retrieved
-      "get_stylesheets": true,
+      "asset_types": ["image", "stylesheet", "script"],
 
       /* When the server takes too long to serve a page or asset, should we request a second time to see if speed is
        * any better? This can be handy for e.g. asp.net applications which are often slow right after app pool recycle*/
       "give_second_chance": true,
 
-      // Where to ouput logs to. If it's an empty string, logs will go to the console.
+      // Where to output logs to. If it's an empty string, logs will go to the console.
       "logfile_location": "gyroscope.log",
 
       // a: append. w: overwrite

@@ -3,11 +3,8 @@
     {
       "cookies": "cookie1=spam&cookie2=eggs",
       "disabled": false,
-      "get_pages": true,
-      "get_images": true,
-      "get_scripts": true,
-      "get_stylesheets": true,
-
+      "get_pages": true
+      "asset_types": ["image", "script", "stylesheet"],
       "uri": "http://localhost",
 
       "pages": [

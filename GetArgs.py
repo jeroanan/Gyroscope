@@ -12,10 +12,7 @@ def get_args():
             ("acceptablesize", "acceptable_size"),
             ("acceptabletime", "acceptable_time"),
             ("configfile", "config"),
-            ("getimages", "get_images"),
             ("getpages", "get_pages"),
-            ("getscripts", "get_scripts"),
-            ("getstylesheets", "get_stylesheets"),
             ("logfile", "logfile_location"),
             ("loglevel", "log_level"),
             ("logtoobig", "log_too_big"),
@@ -43,17 +40,8 @@ def get_args():
 
             ("-c", "--configfile", "Path to configuration file. Default ./config.json.", str),
 
-            ("-gi", "--getimages", "Whether to retrieve images. This argument is overridden by page"
-                                   "config for individual sites. Default True.", bool),
-
             ("-gp", "--getpages", "Whether the pages configured for a site should be retrieved. This argument is "
                                   "overridden by page config for individual sites. Default True", bool),
-
-            ("-gscripts", "--getscripts", "Whether to retrieve external scripts. This argument is overridden by page "
-                                          "config for individual sites. Default True", bool),
-
-            ("-gss", "--getstylesheets", "Whether to retrieve external stylesheets. This argument is overridden by "
-                                         "page config for individual sites. Default True", bool),
 
             ("-gsc", "--givesecondchance", "Whether a slowly-loading page or asset should be requested a second time. "
                                            "The second response will then be measured. This argument is overridden by "

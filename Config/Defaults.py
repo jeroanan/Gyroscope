@@ -13,5 +13,6 @@ def get_defaults():
         "log_level": 30,
         "log_too_big": True,
         "log_too_slow": True,
-        "sites_file": "sites.json"
+        "sites_file": "sites.json",
+        "asset_types": []
     }

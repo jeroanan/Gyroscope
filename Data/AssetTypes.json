@@ -1,0 +1,25 @@
+{
+  "asset_types": [
+    {
+      "name": "image",
+      "tag_name": "img",
+      "uri_attrib": "src",
+      "match_attrib": "src",
+      "match_value": ".*"
+    },
+    {
+      "name": "stylesheet",
+      "tag_name": "link",
+      "uri_attrib": "href",
+      "match_attrib": "rel",
+      "match_value": "stylesheet"
+    },
+    {
+      "name": "script",
+      "tag_name": "script",
+      "uri_attrib": "src",
+      "match_attrib": "src",
+      "match_value": ".*"
+    }
+  ]
+}

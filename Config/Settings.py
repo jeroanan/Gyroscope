@@ -9,19 +9,6 @@ def get_logfile_location(app_config):
 def get_log_level(app_config):
     app_config.get("log_level", 20)
 
-
-def should_get_images(site_config, app_config):
-    return __get_setting(site_config, app_config, "get_images", True)
-
-
-def should_get_scripts(site_config, app_config):
-    return __get_setting(site_config, app_config, "get_scripts", True)
-
-
-def should_get_stylesheets(site_config, app_config):
-    return __get_setting(site_config, app_config, "get_stylesheets", True)
-
-
 def should_get_pages(site_config, app_config):
     return __get_setting(site_config, app_config, "get_pages", True)
 
